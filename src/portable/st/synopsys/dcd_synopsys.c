@@ -445,6 +445,11 @@ void dcd_init (uint8_t rhport)
     usb_otg->GUSBCFG |= USB_OTG_GUSBCFG_PHYSEL;
   }
 
+  for(uint8_t i = 0; i < 16; i++)
+  {
+    __NOP();
+  }
+
   // Reset core after selecting PHY
   // Wait AHB IDLE, reset then wait until it is cleared
   while ((usb_otg->GRSTCTL & USB_OTG_GRSTCTL_AHBIDL) == 0U) {}
