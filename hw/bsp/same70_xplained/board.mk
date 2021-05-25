@@ -1,3 +1,5 @@
+DEPS_SUBMODULES += hw/mcu/microchip
+
 CFLAGS += \
   -mthumb \
   -mabi=aapcs \
@@ -17,6 +19,7 @@ ASF_DIR = hw/mcu/microchip/same70
 LD_FILE = $(ASF_DIR)/same70b/gcc/gcc/same70q21b_flash.ld
 
 SRC_C += \
+	src/portable/template/dcd_template.c \
 	$(ASF_DIR)/same70b/gcc/gcc/startup_same70q21b.c \
 	$(ASF_DIR)/same70b/gcc/system_same70q21b.c \
 	$(ASF_DIR)/hpl/core/hpl_init.c \
@@ -54,5 +57,5 @@ JLINK_DEVICE = SAME70Q21B
 # flash using edbg from https://github.com/ataradov/edbg
 # Note: SAME70's GPNVM1 must be set to 1 to boot from flash with
 # 	edbg -t same70 -F w0,1,1
-flash: $(BUILD)/$(BOARD)-firmware.bin
+flash: $(BUILD)/$(PROJECT).bin
 	edbg --verbose -t same70 -pv -f $< 

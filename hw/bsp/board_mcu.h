@@ -46,14 +46,15 @@
   #include "chip.h"
 
 #elif CFG_TUSB_MCU == OPT_MCU_LPC51UXX || CFG_TUSB_MCU == OPT_MCU_LPC54XXX || \
-      CFG_TUSB_MCU == OPT_MCU_LPC55XX
+      CFG_TUSB_MCU == OPT_MCU_LPC55XX  || CFG_TUSB_MCU == OPT_MCU_MKL25ZXX
   #include "fsl_device_registers.h"
 
 #elif CFG_TUSB_MCU == OPT_MCU_NRF5X
   #include "nrf.h"
 
 #elif CFG_TUSB_MCU == OPT_MCU_SAMD11 || CFG_TUSB_MCU == OPT_MCU_SAMD21 || \
-      CFG_TUSB_MCU == OPT_MCU_SAMD51 || CFG_TUSB_MCU == OPT_MCU_SAME5X
+      CFG_TUSB_MCU == OPT_MCU_SAMD51 || CFG_TUSB_MCU == OPT_MCU_SAME5X || \
+      CFG_TUSB_MCU == OPT_MCU_SAML22
   #include "sam.h"
 
 #elif CFG_TUSB_MCU == OPT_MCU_SAMG
@@ -114,8 +115,20 @@
 #elif CFG_TUSB_MCU == OPT_MCU_ESP32S2
   // no header needed
 
+#elif CFG_TUSB_MCU == OPT_MCU_ESP32S3
+  // no header needed
+
 #elif CFG_TUSB_MCU == OPT_MCU_DA1469X
   #include "DA1469xAB.h"
+
+#elif CFG_TUSB_MCU == OPT_MCU_RP2040
+  #include "pico.h"
+  
+#elif CFG_TUSB_MCU == OPT_MCU_EFM32GG || CFG_TUSB_MCU == OPT_MCU_EFM32GG11 || CFG_TUSB_MCU == OPT_MCU_EFM32GG12
+  #include "em_device.h"
+
+#elif CFG_TUSB_MCU == OPT_MCU_RX63X
+  // no header needed
 
 #else
   #error "Missing MCU header"

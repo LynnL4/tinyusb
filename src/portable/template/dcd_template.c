@@ -28,6 +28,7 @@
 
 #if CFG_TUSB_MCU == OPT_MCU_NONE
 
+#include "common/tusb_fifo.h"
 #include "device/dcd.h"
 
 //--------------------------------------------------------------------+
@@ -100,6 +101,16 @@ bool dcd_edpt_xfer (uint8_t rhport, uint8_t ep_addr, uint8_t * buffer, uint16_t 
   (void) rhport;
   (void) ep_addr;
   (void) buffer;
+  (void) total_bytes;
+  return false;
+}
+
+// Submit a transfer where is managed by FIFO, When complete dcd_event_xfer_complete() is invoked to notify the stack - optional, however, must be listed in usbd.c
+bool dcd_edpt_xfer_fifo (uint8_t rhport, uint8_t ep_addr, tu_fifo_t * ff, uint16_t total_bytes)
+{
+  (void) rhport;
+  (void) ep_addr;
+  (void) ff;
   (void) total_bytes;
   return false;
 }

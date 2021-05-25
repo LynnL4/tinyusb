@@ -1,3 +1,5 @@
+DEPS_SUBMODULES += hw/mcu/nuvoton
+
 CFLAGS += \
   -flto \
   -mthumb \
@@ -11,6 +13,7 @@ CFLAGS += \
 LD_FILE = hw/bsp/$(BOARD)/nuc505_flashtoram.ld
 
 SRC_C += \
+  src/portable/nuvoton/nuc505/dcd_nuc505.c \
   hw/mcu/nuvoton/nuc505/Device/Nuvoton/NUC505Series/Source/system_NUC505Series.c \
   hw/mcu/nuvoton/nuc505/StdDriver/src/adc.c \
   hw/mcu/nuvoton/nuc505/StdDriver/src/clk.c \
@@ -35,10 +38,6 @@ INC += \
   $(TOP)/hw/mcu/nuvoton/nuc505/StdDriver/inc \
   $(TOP)/hw/mcu/nuvoton/nuc505/CMSIS/Include
 
-# For TinyUSB port source
-VENDOR = nuvoton
-CHIP_FAMILY = nuc505
-
 # For freeRTOS port source
 FREERTOS_PORT = ARM_CM4F
 
@@ -57,5 +56,5 @@ JLINK_DEVICE = NUC505YO13Y
 
 # Flash using Nuvoton's openocd fork at https://github.com/OpenNuvoton/OpenOCD-Nuvoton
 # Please compile and install it from github source
-flash: $(BUILD)/$(BOARD)-firmware.elf
+flash: $(BUILD)/$(PROJECT).elf
 	openocd -f interface/nulink.cfg -f target/numicroM4.cfg -c "program $< reset exit"

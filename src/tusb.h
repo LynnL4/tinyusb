@@ -42,7 +42,7 @@
 #if TUSB_OPT_HOST_ENABLED
   #include "host/usbh.h"
 
-  #if HOST_CLASS_HID
+  #if CFG_TUH_HID
     #include "class/hid/hid_host.h"
   #endif
 
@@ -92,7 +92,7 @@
     #include "class/usbtmc/usbtmc_device.h"
   #endif
 
-  #if CFG_TUD_DFU_RT
+  #if CFG_TUD_DFU_RUNTIME
     #include "class/dfu/dfu_rt_device.h"
   #endif
 
